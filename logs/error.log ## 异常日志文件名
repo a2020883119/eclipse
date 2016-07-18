@@ -1,0 +1,7 @@
+2016-07-17 09:44:20  [ main:0 ] - [ DEBUG ]  This is a debug message		class day19.TestMap
+ 2016-07-17 09:44:20  [ main:1 ] - [ INFO ]  This is a info message 		class day19.TestMap
+ 2016-07-17 09:44:20  [ main:1 ] - [ ERROR ]  This is a error message		class day19.TestMap
+ 2016-07-17 09:45:28  [ main:0 ] - [ DEBUG ]  This is a debug message		class day19.TestMap
+ 2016-07-17 09:45:28  [ main:2 ] - [ INFO ]  This is a info message 		class day19.TestMap
+ 2016-07-17 09:45:28  [ main:2 ] - [ ERROR ]  This is a error message		class day19.TestMap
+ 
