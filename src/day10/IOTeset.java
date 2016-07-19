@@ -1,5 +1,6 @@
 package day10;
 
+import java.awt.Desktop;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -11,6 +12,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.util.Date;
 
@@ -25,6 +31,9 @@ public class IOTeset {
 //		fileRW();
 //		fileRWBuf();
 //		fileRWBufL();
+//		fileListShow();
+//		fileIOByteConverChar();
+		fileIOObj();
 	}
 	// FileInputStream and FileOutputStream
 	// BufferedInputStream and BufferOutputStream
@@ -178,4 +187,76 @@ public class IOTeset {
 		System.out.println("file size\t\t:" + file2.length());
 		System.out.println("file absolute path:\t\t" + file2.getAbsolutePath());
 	}
+	
+	//show name of file list
+	static void fileListShow(){
+		File file = new File("D:/tempTestJavaIO");
+		String [] listStr = file.list();
+		for(String str : listStr){
+			String [] temp = str.split("[.]");
+//				System.out.print(temp[1] + "\t");
+			String strr = "D:/tempTestJavaIO/" + str;
+			System.out.println(str + "\t" + new File(strr).length() + " Byte\t" + new File(strr).canExecute());
+		}
+	}
+	//InputStreamReander and OutputStreamWriter
+	@Test
+	static void fileIOByteConverChar() throws IOException{
+		File file = new File("D:/tempTestJavaIO/test.java");
+		File file2 = new File("D:/tempTestJavaIO/test7.java");
+		FileInputStream fis = new FileInputStream(file);
+		InputStreamReader isr = new InputStreamReader(fis);
+		FileOutputStream fos = new FileOutputStream(file2);
+		OutputStreamWriter osw = new OutputStreamWriter(fos);
+		char [] temp = new char [1024];
+		while(isr.read(temp) != -1){
+			osw.write(temp);
+		}
+		isr.close();
+		fis.close();
+		osw.close();
+		fos.close();
+		System.out.println("OK");
+	}
+	//any test
+	@Test
+	static void test(){
+//		File file = new File("haha.txt");
+//		Runtime.getRuntime().exec("notepad haha.txt");
+//		System.out.println(Runtime.getRuntime().totalMemory() / 1000.0 + " MB");
+//		System.out.println(Runtime.getRuntime().freeMemory() / 1000.0 + " MB");
+	}
+	//
+	@Test
+	static void fileIOObj() throws Exception{
+		File file = new File("D:/tempTestJavaIO/test8.java");
+		Student stu = new Student(101,"小明",'M', "额南焦作");
+		Student stu2 = new Student(102,"小好",'M', "河南焦作");
+		Student stu3 = new Student(103,"小的",'W', "河南地方");
+		Student stu4 = new Student(104,"小单",'W', "河的焦作");
+		FileOutputStream fos = new FileOutputStream(file);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		oos.writeObject(stu);
+		oos.writeObject(stu2);
+		oos.writeObject(stu3);
+		oos.writeObject(stu4);
+		FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream iso = new ObjectInputStream(fis);
+		Object obj = iso.readObject();
+		Object obj2 = iso.readObject();
+		Object obj3 = iso.readObject();
+		Object obj4 = iso.readObject();
+		Student stuu = (Student)obj;
+		Student stuu2 = (Student)obj2;
+		Student stuu3 = (Student)obj3;
+		Student stuu4 = (Student)obj4;
+		System.out.println(stuu.getId() + "\t" + stuu.getName() + "\t" + stuu.getGender() + "\t" + stuu.getAddr());
+		System.out.println(stuu2.getId() + "\t" + stuu2.getName() + "\t" + stuu2.getGender() + "\t" + stuu2.getAddr());
+		System.out.println(stuu3.getId() + "\t" + stuu3.getName() + "\t" + stuu3.getGender() + "\t" + stuu3.getAddr());
+		System.out.println(stuu4.getId() + "\t" + stuu4.getName() + "\t" + stuu4.getGender() + "\t" + stuu4.getAddr());
+	}
+	
+	
+	
+	
 }
