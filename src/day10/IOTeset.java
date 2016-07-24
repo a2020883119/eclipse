@@ -118,7 +118,7 @@ public class IOTeset {
 		System.out.println("file size\t\t:" + file2.length());
 		System.out.println("file absolute path:\t\t" + file2.getAbsolutePath());
 	}
-	// FileRead and FileWrite
+	// FileRead and FileWrite                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 	// BufferedReader and BufferedWriter
 	@Test
 	static void fileRWBuf() throws IOException{
@@ -187,7 +187,6 @@ public class IOTeset {
 		System.out.println("file size\t\t:" + file2.length());
 		System.out.println("file absolute path:\t\t" + file2.getAbsolutePath());
 	}
-	
 	//show name of file list
 	static void fileListShow(){
 		File file = new File("D:/tempTestJavaIO");
@@ -226,7 +225,7 @@ public class IOTeset {
 //		System.out.println(Runtime.getRuntime().totalMemory() / 1000.0 + " MB");
 //		System.out.println(Runtime.getRuntime().freeMemory() / 1000.0 + " MB");
 	}
-	//
+	//Serializ
 	@Test
 	static void fileIOObj() throws Exception{
 		File file = new File("D:/tempTestJavaIO/test8.java");

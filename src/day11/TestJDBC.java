@@ -55,7 +55,6 @@ public class TestJDBC {
 		System.out.println("Id\tName\tAge\tGender\t\tAddr\tPhone\t\tSalary");
 		System.out.println("---------------------------------------------------------------------");
 		while(rs.next()){
-	
 			System.out.println(rs.getInt("ID") +"\t"+ rs.getString("NAME") +"\t"+ rs.getInt("AGE") +"\t"+ rs.getString("GENDER") +"\t"+ rs.getString("ADDR") +"\t"+ rs.getString("PHONE")+"\t" + rs.getInt("SALARY"));
 		}
 	}
