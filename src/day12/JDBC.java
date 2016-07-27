@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+
 public class JDBC {
 
 	public static void main(String[] args) throws Exception {
@@ -34,7 +35,6 @@ public class JDBC {
 	}
 	
 	//get conn
-	
 	public static Connection getCon(){
 		String uri = "jdbc:oracle:thin:@localhost:1521:ORCL";
 		String username = "WSZZ";
@@ -42,7 +42,7 @@ public class JDBC {
 		Connection conn = null;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver"); 
-			conn = DriverManager.getConnection(uri, username, password);
+				conn = DriverManager.getConnection(uri, username, password);			
 			if(conn == null){
 				System.out.println("connection is failed.");
 				return null;
@@ -51,16 +51,17 @@ public class JDBC {
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("DB service not open.");
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("jdbc.jar not found.");
 		}
 		return conn;	
 	}
 	
-	//get conn by dbName
-	
+	//get conn by dbName	
 	public static Connection getCon(String dbName){
 		String uri = "jdbc:oracle:thin:@localhost:1521:" + dbName;
 		String username = "WSZZ";
@@ -322,8 +323,7 @@ public class JDBC {
 		}
 	}
 	
-	//query func3
-	
+	//query func
 	public static void query() throws Exception{
 		int id;
 		String name, sql, pwd;
