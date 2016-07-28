@@ -8,14 +8,42 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class JdbcConnPrac {
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		menu();
 //		getConn();
 //		queryData();
-		insertData();
+//		insertData();
 //		deleteData();
 //		updateData();
+	}
+	
+	public static void menu(){
+		Scanner scanner = new Scanner(System.in);
+		boolean exit = true;
+		while(exit){
+			System.out.println("[0] exit\n[1] query\n[2] insert\n[3] delete\n[4] update\nplease in put number 0-4");
+			switch (scanner.nextInt()) {
+			case 0:
+				exit = false;
+				break;
+			case 1:
+				queryData();
+				break;
+			case 2:
+				insertData();
+				break;
+			case 3:
+				deleteData();
+				break;
+			case 4:
+				updateData();
+				break;
+			default:
+				break;
+			}
+		}
 	}
 	
 	public static Connection getConn(){
@@ -38,7 +66,7 @@ public class JdbcConnPrac {
 		};
 		return conn;
 	}
-
+	
 	public static void safeClose(Connection conn){
 		try {
 			if(conn != null){
@@ -102,7 +130,7 @@ public class JdbcConnPrac {
 		}
 
 	}
-
+	
 	public static void insertData(){
 		Scanner scanner = new Scanner(System.in);
 		Connection conn = getConn();
@@ -133,7 +161,7 @@ public class JdbcConnPrac {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void deleteData(){
 		Scanner scanner = new Scanner(System.in);
 		Connection conn = getConn();
@@ -170,6 +198,7 @@ public class JdbcConnPrac {
 		System.out.println("for  example:101");
 		System.out.print("please input:");
 		int id = scanner.nextInt();
+		int iddd = id;
 		String sql = "select * from users where id = " + id;
 		try {
 			Statement st = conn.createStatement();
@@ -178,25 +207,35 @@ public class JdbcConnPrac {
 				System.out.print("input '0' to skip\n");
 				System.out.print("please input id:");
 				int idd = scanner.nextInt();
-				sql = "select * from users where id = " + idd;
-				rs = st.executeQuery(sql);
-				if(!rs.next()){
-					safeClose(rs);
-					sql = "update users set id = " + idd + " where id = " + id;
-					st.executeUpdate(sql);
-				}else{
-					safeClose(rs);
-					System.out.println("id = " + id + " exists");
-					return;
+				if(!"0".equals(String.valueOf(idd)))
+				{
+					sql = "select * from users where id = " + idd;
+					rs = st.executeQuery(sql);
+					if(!rs.next()){
+						safeClose(rs);
+						sql = "update users set id = " + idd + " where id = " + id;
+						st.executeUpdate(sql);
+						iddd = idd;
+					}else{
+						safeClose(rs);
+						System.out.println("id = " + id + " exists");
+						return;
+					}
 				}
 				System.out.print("please input account:");
 				String account = scanner.next();
-				sql = "update users set id = '" + account + "' where id = " + id;
-				st.executeUpdate(sql);
-				System.out.print("please input passord:");
+				if(!"0".equals(account))
+				{
+					sql = "update users set account = '" + account + "' where id = " + iddd;
+					st.executeUpdate(sql);
+				}
+				System.out.print("please input password:");
 				String password = scanner.next();
-				sql = "update users set id = '" + password + "' where id = " + id;
-				st.executeUpdate(sql);
+				if(!"0".equals(password))
+				{
+					sql = "update users set password = '" + password + "' where id = " + iddd;
+					st.executeUpdate(sql);
+				}
 				queryData();
 			}else{
 				System.out.println("id = " + id + " not exists");
@@ -209,8 +248,7 @@ public class JdbcConnPrac {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 }
 
 	
