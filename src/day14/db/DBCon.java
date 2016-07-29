@@ -1,4 +1,4 @@
-package day14;
+package day14.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBCon {
-	static Connection conn = null;
+	public static Connection conn = null;
 	
-	DBCon(){
+	public DBCon(){
 	}
 	
 	public Connection getConn() {

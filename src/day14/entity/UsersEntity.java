@@ -1,10 +1,15 @@
-package day14;
+package day14.entity;
 
 public class UsersEntity {
 	private int id;
 	private String account;
 	private String password;
 	
+	public UsersEntity(int id, String account, String password){
+		this.id = id;
+		this.account = account;
+		this.password = password;
+	}
 	public int getId() {
 		return id;
 	}
