@@ -218,7 +218,7 @@ public class JdbcConnPrac {
 						iddd = idd;
 					}else{
 						safeClose(rs);
-						System.out.println("id = " + id + " exists");
+						System.out.println("id = " + idd + " exists");
 						return;
 					}
 				}

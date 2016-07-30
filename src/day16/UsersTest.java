@@ -1,19 +1,16 @@
-package day14;
+package day16;
 
-import day14.entity.UsersEntity;
-import day14.dao.impl.UsersDaoImpl;
+import day16.entity.UsersEntity;
+import day16.dao.impl.UsersDaoImpl;
 
 public class UsersTest {
 
 	public static void main(String[] args) {
-		UsersEntity users = new UsersEntity(111, "111", "111");
-		UsersEntity users2 = new UsersEntity(222, "222", "222");
-//		UsersDaoImpl usersImpl = new UsersDaoImpl(users);
+		UsersEntity users = new UsersEntity("111", "111");
+		UsersEntity users2 = new UsersEntity("222", "222");
 		UsersDaoImpl usersImpl = new UsersDaoImpl();
-//		usersImpl.menu(users);
 	
 		System.out.println("¡¾insert¡¿");
-		usersImpl.insertData(users);
 		usersImpl.insertData(users);
 		
 		System.out.println("¡¾updata¡¿");
