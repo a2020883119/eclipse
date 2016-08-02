@@ -219,18 +219,11 @@ public class UsersDaoImpl implements UsersDao{
 		Connection conn = db.getConn();
 		try {
 			PreparedStatement st = conn.prepareStatement(sql);
-//			if(list.size() != 0){
-//				for(int i = 1; i < list.size(); i++){
-//					st.setObject(i, list.get(i-1));
-//				}
-//			}
-//			Statement st = conn.createStatement();
-//			st.executeQuery(arg0)
-//				st.setObject(1, list.get(0));
 				for(int i = 1; i <= list.size(); i++){
 					st.setObject(i, list.get(i-1));
 				}
 				if(sql.contains("select")){
+//				if(sql.indexOf("select") == 0){
 					ResultSet rs = st.executeQuery();
 					return rs;
 				}else{
